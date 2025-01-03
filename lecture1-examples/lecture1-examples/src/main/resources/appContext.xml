@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!-- MemberDao 타입 객체 생성 -->					
+	<bean id="memberDao" class="spring.MemberDao" /> 		
+								
+	<!-- MemberRegisterService 타입 객체 생성  -->
+	<bean id="memberRegSvc" class="spring.MemberRegisterService"> 
+		<constructor-arg>	   <!-- 생성자를 이용한 MemberDao 객체 주입 --> 
+			<ref bean="memberDao" />	
+		</constructor-arg>
+	</bean>
+	
+	<!-- MemberRegisterService 타입 객체 생성  -->
+	<bean id="changePwdSvc" class="spring.ChangePasswordService">
+		<property name="memberDao" ref="memberDao" />	<!-- setter method를 이용한 MemberDao 객체 주입 -->
+	</bean> 
+</beans>

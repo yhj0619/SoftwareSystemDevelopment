@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+    xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/util 
+						http://www.springframework.org/schema/util/spring-util.xsd">
+
+	<!-- ==================================================================== -->
+	<!-- Spring Idol talent compitition class -->
+	<!-- ==================================================================== -->
+	<bean id="springIdol" class="springidol.SpringIdol" 
+		autowire="byType">	    
+        <!-- // 생략 가능
+        <property name="performers"> 
+			<list>
+				<ref bean="duke" />
+				<ref bean="kenny" />
+				<ref bean="hank" />
+				<ref bean="lena" />
+				<ref bean="suhyun" />			
+			</list>
+		</property> 
+        -->	
+ 	</bean>
+
+	<!-- ==================================================================== -->
+	<!-- Performers -->
+	<!-- ==================================================================== -->
+
+	<bean id="duke" class="springidol.PoeticJuggler"
+		autowire="constructor">
+		<!-- <constructor-arg ref="sonnet29" /> --> <!-- 생략  가능! -->
+	</bean>
+
+	<bean id="kenny" class="springidol.Instrumentalist"
+		autowire="byName">
+		<property name="song" value="Jingle Bells" />
+		<!-- <property name="instrument" ref="instrument" /> --> 
+	</bean>
+
+	<bean id="hank" class="springidol.OneManBand"
+		autowire="byName">
+		<!-- <property name="instruments" ref="instruments" /> --> 
+	</bean>
+
+	<bean id="someone" class="springidol.Song">
+    	<property name="title" value="Someone Like You" />
+		<property name="artist" value="Adele" />
+	</bean>
+	    
+   	<!-- 두 번째 Song 생략 -->
+	<!-- 
+	<bean id="spring" class="springidol.Song">
+		<property name="title" value="Spring Day" />
+		<property name="artist" value="BTS" />
+	</bean>
+	-->
+
+	<bean id="lena" class="springidol.Singer" autowire="constructor">
+        <constructor-arg value="Lena Park" />   <!-- 생략 불가! -->
+		<!-- <constructor-arg ref="someone" /> -->  <!-- 생략 가능 -->
+	</bean>
+ 
+    <bean id="suhyun" class="springidol.Singer">   
+        <constructor-arg value="Suhyun" />  	
+        <constructor-arg value="#{lena.song}" />
+		<constructor-arg ref="piano" />		
+    </bean>
+    
+	<!-- ==================================================================== -->
+	<!-- Instruments performers can use -->
+	<!-- ==================================================================== -->
+	<bean id="harmonica" class="springidol.Harmonica" />
+	<bean id="cymbal" class="springidol.Cymbal" />
+	
+    <!-- rename id of "guitar" bean to "instrument" -->
+	<bean id="instrument" class="springidol.Guitar" />
+	<bean id="saxophone" class="springidol.Saxophone" />
+	<bean id="piano" class="springidol.Piano" />
+
+	<util:map id="instruments">   <!-- 이름 변경 -->
+		<entry key="HARMONICA" value-ref="harmonica" />
+		<entry key="CYMBAL" value-ref="cymbal" />
+		<entry key="SAXOPHONE" value-ref="saxophone" />	
+	</util:map>
+	
+    <bean id="sonnet29" class="springidol.Sonnet29" />
+	
+    <bean id="encore" class="springidol.Encore">	<!-- autowiring 불가! -->
+		<property name="encorePerformer"
+			value="#{springIdol.performers[
+						T(java.lang.Math).random()*springIdol.performers.length
+					]}" />
+	</bean>
+</beans>

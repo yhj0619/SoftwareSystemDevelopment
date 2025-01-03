@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>메시지 입력</title></head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script>
+	
+	function postJson2() {
+		var message1 = {
+			id: $('#id1').val(),
+			content: $('#content1').val(),
+			creationTime: new Date()
+		};
+		var message2 = {
+			id: $('#id2').val(),
+			content: $('#content2').val(),
+			creationTime: new Date()
+		};			
+		var messages = [message1, message2];
+		
+		alert("request: " + JSON.stringify(messages));
+
+		/* $.ajax({			// Ajax 호출을 위해  JQuery 이용 
+			type: "POST",
+			url: "message/post-in-json",
+			contentType: "application/json",
+			data: JSON.stringify(messages),
+			success: printResult,
+			error: function(){
+				alert("ERROR", arguments);
+			}
+		}); */
+		
+		axios.post("message/post-in-json", messages)
+			.then(response => printResult(response.data))
+			.catch(error => { 
+				alert("ERROR", error); console.error(error);
+			});
+	}
+	
+	function printResult(responseJson) {	// responseJson: JS object parsed from JSON text		
+		alert("메시지가 등록되었습니다.");
+		$("#result").html("Response Body: <div><div>");
+		$("#result > div").text(JSON.stringify(responseJson));
+	}
+		
+	$(document).ready(function(){
+		$("#btn-submit").click(postJson2);
+	});
+
+	</script>
+</head>
+<body>
+<form> 
+	<div id="msg1">
+		Message #1<br>
+		- ID: <input type="text" id="id1" name="id" placeholder="Input number..."/><br/> 
+		- Content: <textarea id="content1" name="content"></textarea><br> 
+    </div>
+    <br>
+    <div id="msg2">
+	    Message #2<br>
+		- ID: <input type="text" id="id2" name="id" placeholder="Input number..."/><br/> 
+		- Content: <textarea id="content2" name="content"></textarea><br> 
+    </div>
+    <br>
+    <button type="button" id="btn-submit">등록</button> 
+</form>
+<hr>
+<div id="result" style="color:red;"></div>
+
+</body>
+</html>

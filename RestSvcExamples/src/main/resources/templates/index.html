@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>REST Service Examples</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script type="text/javascript" src="js/example.js"></script>
+</head>
+<body>
+	<h2>Rest Service Examples</h2>
+	
+	/simple(POST): @RequestBody → Java 객체(String) → @ResponseBody (SimpleController#submit())<br><br>
+	<form method="POST" action="/simple"> 
+    	이름: <input type="text" name="name" /> <br/> 
+    	나이: <input type="text" name="age" /> 
+    	<input type="submit" /> 
+	</form>	
+	<br>
+	
+	<a href="message/get-in-xml">/message/get-in-xml (GET)</a>: Java 객체(MessageList) → @ResponseBody(XML데이터) (MessageController.getMsgsInXml())<br><br>
+	
+	<a href="javascript:postXml()">/message/post-in-xml (POST by postXml())</a>: @RequestBody(XML데이터) → Java 객체(MessageList) → 내용 수정 → @ResponseBody(XML데이터) (MessageController#postMsgsInXml())<br><br>
+	
+	<a href="message/get-in-json">/message/get-in-json (GET)</a>: Java 객체(List&lt;Message&gt;) → @ResponseBody(JSON데이터) (MessageController#getMsgsInJson())<br><br>
+	
+	<a href="javascript:postJson()">/message/post-in-json (POST by postJson())</a>: @RequestBody(JSON데이터) → Java 객체(List&lt;Message&gt;) → 내용 수정 → @ResponseBody(JSON데이터) (MessageController#postMsgsInJson())<br><br>
+	
+	<a href="messageForm">message form</a>: Form 입력 → Ajax call → @RequestBody(JSON데이터) → Java 객체(List&lt;Message&gt;) → 내용 수정 → @ResponseBody(JSON데이터) (MessageController#postMsgsInJson())<br><br>
+	
+	<a href="category/101">/category/101</a>, <a href="category/102">/category/102</a><br><br>
+ 
+ 	<a href="category/101/product/PT">/category/101/product/PT</a><br><br>
+ 
+ 	<hr>
+	<div id="result" style="color:red;"></div><br>
+</body>
+</html>

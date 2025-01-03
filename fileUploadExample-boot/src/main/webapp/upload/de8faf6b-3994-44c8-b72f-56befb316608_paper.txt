@@ -1,0 +1,12 @@
+Diversifying the results of keyword queries on linked data
+A Dass, C Aksoy, A Dimitriou, D Theodoratos, X Wu
+Web Information Systems Engineering–WISE 2016: 17th International Conference …, 2016•Springer
+
+RDF keyword search by query computation
+Z Ma, X Lin, L Yan, Z Zhao - Journal of Database Management (JDM …, 2018 - igi-global.com
+
+Trading off popularity for diversity in the results sets of keyword queries on linked data
+A Dass, D Theodoratos - … 17th International Conference, ICWE 2017, Rome …, 2017 - Springer
+
+[PDF] Top-k Keyword Search over Wikipedia-based RDF Knowledge Graphs.
+H Yoghourdjian, S Elbassuoni, M Jaber… - KDIR, 2017 - pdfs.semanticscholar.org

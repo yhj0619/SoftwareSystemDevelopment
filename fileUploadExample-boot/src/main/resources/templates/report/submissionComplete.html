@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+	<title>파일 업로드 예제: 결과 화면</title>
+</head>
+<body>
+	<h3>파일 제출 완료</h3>
+	<br>
+	<div>
+		fileUrl: <span th:text="${fileUrl}">file URL</span><br><br>
+		<img th:src="@{${fileUrl}}" />
+	</div>
+	<br>
+	<a th:href="@{/}">Go to index</a>
+</body>
+</html>

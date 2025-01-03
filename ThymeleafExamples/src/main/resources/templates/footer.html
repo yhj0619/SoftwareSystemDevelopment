@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+	<div th:fragment="linkToMain">
+		<p>
+			<a href="#" th:href="@{/}" th:text="'[' + #{go.main} + ']'">링크</a>
+		</p>
+	</div>
+	<div th:fragment="linkToSearch">
+		<p>
+			<a href="#" th:href="@{/members}" th:text="'[' + #{go.search} + ']'">링크</a>
+		</p>
+	</div>
+</body>
+</html>
